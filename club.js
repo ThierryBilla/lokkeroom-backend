@@ -1,5 +1,3 @@
-// Assuming your backend server file is named server.js or index.js
-
 const express = require('express');
 const cors = require('cors');
 const routes = require('./routes');
@@ -11,7 +9,11 @@ app.use(cors());
 
 // Add CORS headers
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://lokkeroom-frontend-24fab992f120.herokuapp.com', 'http://localhost:5173', 'http://127.0.0.1:5173');
+  const allowedOrigins = ['http://localhost:5173', 'http://127.0.0.1:5173', 'https://lokkeroom-frontend-24fab992f120.herokuapp.com'];
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   res.setHeader('Access-Control-Allow-Credentials', true);
