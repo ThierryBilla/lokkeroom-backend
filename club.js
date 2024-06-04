@@ -20,7 +20,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Your routes configuration
+// routes configuration
 app.use('/', routes);
 
 // Start the server
