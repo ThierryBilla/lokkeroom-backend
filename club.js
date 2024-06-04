@@ -1,38 +1,26 @@
-//club.js
-const dotenv = require('dotenv');
-dotenv.config();  
+// Assuming your backend server file is named server.js or index.js
 
 const express = require('express');
-const cors = require('cors'); // Import CORS
+const cors = require('cors');
 const routes = require('./routes');
 
-const server = express();
+const app = express();
 
 // Configure CORS
-server.use(cors({
-  origin: function (origin, callback) {
-      const allowedOrigins = ['http://localhost:5173', 'http://127.0.0.1:5173', 'https://lokkeroom-frontend-24fab992f120.herokuapp.com/api'];
-      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-          callback(null, true);
-      } else {
-          callback(new Error('CORS policy violation'));
-      }
-  },
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
-}));
+app.use(cors());
 
-
-server.use(express.json()); // Ensure this middleware is used if you're parsing JSON bodies
-server.use('/', routes);
-
-// Middleware error management
-server.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('Internal error');
+// Add CORS headers
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://lokkeroom-frontend-24fab992f120.herokuapp.com');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
 });
+
+// Your routes configuration
+app.use('/', routes);
 
 // Start the server
 const port = process.env.PORT || 3000;
-server.listen(port, () => console.log(`Server started on port ${port}`));
-
+app.listen(port, () => console.log(`Server started on port ${port}`));
