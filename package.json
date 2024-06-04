@@ -18,5 +18,9 @@
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.9.3",
     "pg": "^8.11.5"
+  },
+
+  "engines": {
+    "node": "20.x"
   }
 }
