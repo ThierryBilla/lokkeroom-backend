@@ -21,7 +21,8 @@ To launch the server, execute the following command:
 ```bash
 npm start
 
-### PORT
+
+## Routes
 
 The server will initialize on the port specified in the `PORT` environment variable. If no port is specified, it will default to port 3000.
 
