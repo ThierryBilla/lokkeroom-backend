@@ -26,6 +26,3 @@ npm start
 
 The server will initialize on the port specified in the `PORT` environment variable. If no port is specified, it will default to port 3000.
 
----
-
-Feel free to tailor this README to suit the specific requirements of your project. Ensure all essential information is included for developers to comprehend and effectively utilize the Lokkeroom backend.
